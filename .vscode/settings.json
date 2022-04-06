@@ -1,0 +1,17 @@
+{
+    "files.autoSave": "afterDelay"
+ 
+}
+   {
+   "emmet.includeLanguages": {
+    "ejs": "html"
+  }
+}
+{
+    // ... your other settings if you have them ...
+
+    "files.associations": {
+        // This will enable html vscode autocompletion in EJS files
+        "*.ejs": "html"
+    }
+}
