@@ -24,7 +24,6 @@ app.get("/",(req,res)=>{
 app.get("/about",(req,res)=>{
   res.render("about",{aboutUs:aboutContent});
 });
-
 app.get("/contact",(req,res)=>{
   res.render("contact",{contactUs:contactContent});
 });
@@ -41,7 +40,9 @@ app.post("/compose",(req,res)=>{
   POST.push(post);
   res.redirect("/");
 });
-
+app.get("/post/:topic", (req,res)=>{
+  console.log(req.params.topic);
+});
 app.listen(3000, function() {
   console.log("Server started on port 3000");
 });
