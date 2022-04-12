@@ -3,6 +3,7 @@
 <p><%=StartContent %></p>
 <% anotherContent.forEach((article)=> { %>
 <h1><%= article.title %></h1>
-<p><%= article.content %></p>
+<p><%= article.content.substring(0, 150)+ " ...." %></p>
+<a href="/post/<%=article.title%>">Read More</a>
  <hr /><% }) %>
 <%- include("partials/footer") -%>
