@@ -46,10 +46,9 @@ app.get("/post/:topic", (req,res)=>{
   POST.forEach((Post)=>{
     var stored = _.lowerCase(Post.title);
     if(stored === requested){
-      console.log("Match found!");
-    }
+      res.render("post",{postTitle:Post.title, postBody:Post.content});
+    };
   });
-  console.log(req.params.topic);
 });
 app.listen(3000, function() {
   console.log("Server started on port 3000");
