@@ -17,9 +17,9 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-mongoose.connect('mongodb+srv://admin-saidmtanzania:said1561@cluster0.2uzik.mongodb.net/todolistDB',{useNewUrlParser:true});
+mongoose.connect('mongodb+srv://admin-saidmtanzania:said1561@cluster0.2uzik.mongodb.net/blogDB',{useNewUrlParser:true});
 const postSChema = {
-  tile: String,
+  title: String,
   content: String
 };
 
@@ -28,7 +28,10 @@ const Post = mongoose.model("Post",postSChema);
 let POST=[];
 
 app.get("/",(req,res)=>{
-  res.render("home",{StartContent:homeStartingContent ,anotherContent:POST});
+  Post.find({},(err,posts)=>{
+    res.render("home",{StartContent:homeStartingContent ,
+      anotherContent:posts});
+  });
 });
 
 app.get("/about",(req,res)=>{
@@ -50,16 +53,13 @@ app.post("/compose",(req,res)=>{
   post.save();
   res.redirect("/");
 });
-app.get("/post/:topic", (req,res)=>{
-  const requested = _.lowerCase(req.params.topic);
-  POST.forEach((Post)=>{
-    var stored = _.lowerCase(Post.title);
-    if(stored === requested){
-      res.render("post",{postTitle:Post.title, postBody:Post.content});
-    };
+app.get("/post/:postid", (req,res)=>{
+  const requested = req.params.postid;
+  Post.findOne({_id:requested},(err,post)=>{
+    res.render("post",{postTitle:post.title, postBody:post.content});
   });
 });
 
 app.listen(process.env.PORT || 3000, function() {
-  console.log("Server started on port 3000");
+  console.log("Server has started Sucessfully");
 });
