@@ -4,4 +4,4 @@
 
 [CLICK TO PEN LINK](https://protected-spire-05401.herokuapp.com)
 
-### Full Funtonal
+### Full Functional BLogSite webapp
